@@ -1,0 +1,21 @@
+<div class="modal fade" id="modal-columns">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><%= t(:select_columns, :default => "Select Columns") %></h5>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+      <div class="modal-body">
+        <% for field in model_columns %>
+          <label class="checkbox">
+            <input type="checkbox" name="field[]" value="<%= field %>" <%= "checked" if session['fields'][model_name.to_s].include?(field) %>> <%= t("app.models.#{model_name}.bs_attributes.#{field}", :default => field.capitalize) %>
+          </label><br />
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="filter-columns" data-url="<%= select_fields_url(model_name) %>">Ok</button>
+        <button type="button" class="btn btn-light" id="cancel-filter-columns"><%= t(:cancel, :default => "Cancel") %></button>
+      </div>
+    </div>
+  </div>
+</div>

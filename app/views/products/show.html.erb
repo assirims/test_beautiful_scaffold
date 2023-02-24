@@ -1,0 +1,28 @@
+<h2><%= t(:show, :default => "Show") %> <%= t('app.models.product.bs_caption', :default => 'product') %></h2>
+
+  <p>
+    <b><%= t('app.models.product.bs_attributes.name', :default => 'name') %>:</b>
+      <%= @product.name %>
+  </p>
+  <p>
+    <b><%= t('app.models.product.bs_attributes.price', :default => 'price') %>:</b>
+      <%= number_to_currency(@product.price) %>
+  </p>
+  <p>
+    <b><%= t('app.models.product.bs_attributes.tva', :default => 'tva') %>:</b>
+      <%= @product.tva %>
+  </p>
+  <p>
+    <b><%= t('app.models.product.bs_attributes.description', :default => 'description') %>:</b>
+      <%= @product.description %>
+  </p>
+  <p>
+    <b><%= t('app.models.product.bs_attributes.visible', :default => 'visible') %>:</b>
+      <%= t((@product.visible ? "yes".to_sym : "no".to_sym)) %>
+  </p>
+
+<!-- Beautiful_scaffold - AddField - Field - Do not remove -->
+
+<%= link_to t(:edit, :default => "Edit"), edit_product_path(@product), :class => "btn btn-light" %>
+<%= link_to t(:back, :default => "Back"), products_path, :class => "btn btn-light" %>
+

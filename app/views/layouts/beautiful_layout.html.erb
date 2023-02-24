@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="<%= (I18n.locale || I18n.default_locale) %>">
+  <head>
+    <meta charset="utf-8">
+    <title>Beautiful Scaffold</title>
+
+    <meta name="description" content="Beautiful Scaffold">
+    <meta name="author" content="You or me Sylvain Claudel (https://blog.rivsc.ovh)">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--TODO remove cdn-->
+    <script src="https://unpkg.com/driver.js/dist/driver.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/driver.js/dist/driver.min.css">
+
+    <%= stylesheet_link_tag "application-bs" %>
+    <%= javascript_include_tag "application-bs" %>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <%= csrf_meta_tags %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          Beautiful-Scaffold
+        </a>
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse">
+        <nav class="nav navbar-nav">
+          <a href="/" class="nav-link">Home</a>
+          <%= render :partial => "layouts/beautiful_menu" %>
+          <!-- Beautiful_scaffold - Signin - Do not remove -->
+        </nav>
+        <i class="fa fa-question-circle text-white float-right" id="bs-help"></i>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md filler">
+          <% if !flash[:notice].blank? %>
+            <div class="alert alert-info">
+              <a class="close" data-dismiss="alert" href="#">×</a>
+              <h4 class="alert-heading">Info : </h4>
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+          <% if !flash[:alert].blank? %>
+            <div class="alert alert-warning">
+              <a class="close" data-dismiss="alert" href="#">×</a>
+              <h4 class="alert-heading">Warning : </h4>
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
+          <% if !flash[:error].blank? %>
+            <div class="alert alert-danger">
+              <a class="close" data-dismiss="alert" href="#">×</a>
+              <h4 class="alert-heading">Error : </h4>
+              <%= flash[:error] %>
+            </div>
+          <% end %>
+          <div class="mt-2">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="loader" style="display:none">
+      <div class="circle"></div>
+      <div class="circle1"></div>
+    </div>
+
+    <!-- Beautiful_scaffold - Modal - Do not remove -->
+
+    <script type="text/javascript">
+      <% if !@opened_modal.blank? %>
+      $('<%= @opened_modal %>').modal('show');
+      <% end %>
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<h2><%= t(:treeview, :default => 'Treeview') %> <%= t('app.models.product.bs_caption', :default => 'product') %></h2>
+
+
+
+<%
+engine_name       = ""
+namespace_for_url = ""
+plural_model_name = "products"
+model_name        = "product"
+opened_node       = Product.select(:id).all.map{ |g| "'treeelt_" + g.id.to_s + "'" }.join(',').html_safe
+%>
+
+<div id="treeview" data-model="<%= model_name %>" data-url="/<%= engine_name %><%= namespace_for_url %><%= plural_model_name %>/" data-opened="[<%= opened_node %>]">
+  <ul>
+    <% Product.transaction do %>
+    <% ar = Product.where(:product_id => nil) %>
+    <% ar = ar.order("position") if Product.column_names.include?("position") %>
+      <% for g in ar.all %>
+        <%= build_treeview(g, 'products') %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+

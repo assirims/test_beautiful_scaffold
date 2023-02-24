@@ -1,0 +1,28 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery-ui
+ *= require beautiful-scaffold
+ *= require bootstrap-wysihtml5
+ *= require themes/default/style
+ */
+
+/* Bootstrap 4 */
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import "tempusdominus-bootstrap-4.css";
+
+/* Fix bug driverJS position:fixed */
+div#driver-highlighted-element-stage, div#driver-page-overlay {
+    background: transparent !important;
+    outline: 5000px solid rgba(0, 0, 0, .75)
+}
